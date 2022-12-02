@@ -1,63 +1,51 @@
 import React from "react";
-import styled from "styled-components";
+import setaPlayImagem from "../assets/img/seta_play.png"
+import setaVirarImagem from "../assets/img/seta_virar.png"
+import Botoes from "./Botoes"
+import ContainerPerguntaAberta from "./ContainerPerguntaAberta";
+import ContainerPerguntaFechada from "./ContainerPerguntaFechada";
 
-export default function Pergunta({question}) {
+export default function Pergunta({ question, answer, id, respondidas, setRespondidas }) {
+    const [abrePergunta, setAbrePergunta] = React.useState(false);
+    const [virada, setVirada] = React.useState(false);
+    const [cor,setCor] = React.useState("");
+    function ResponderCard(escolha) {
+        setRespondidas(respondidas+1);
+        setAbrePergunta(false);
+        switch (escolha) {
+            case "verde":
+                setCor("verde")
+                break;
+            case "amarelo":
+                setCor("amarelo")
+                break;
+            case "vermelho":
+                setCor("vermelho")
+                break;
+        }
+    }
     return (
         <>
-            <ContainerPerguntaFechada>
-                <p>{question}</p>
-                <ion-icon name="play-outline"></ion-icon>
-            </ContainerPerguntaFechada>
+            {abrePergunta ?
+                <ContainerPerguntaAberta>
+                    {virada ? <>
+                        <p> {answer}</p>
+                        <Botoes>
+                            <button onClick={() => ResponderCard("vermelho")} className="vermelho">Não lembrei</button>
+                            <button onClick={() => ResponderCard("amarelo")} className="amarelo">Quase não lembrei</button>
+                            <button onClick={() => ResponderCard("verde")} className="verde">Zap!</button>
+                        </Botoes>
+                    </>
+                        : <>
+                            <p>{question}</p>
+                            <img onClick={() => setVirada(true)} src={setaVirarImagem}></img>
+                        </>
+                    }
+                </ContainerPerguntaAberta> :
+                <ContainerPerguntaFechada>
+                    <p className={cor} >{`Pergunta ${id}`}</p>
+                    <img onClick={() => !virada && setAbrePergunta(true)} src={setaPlayImagem}></img>
+                </ContainerPerguntaFechada>}
         </>
     )
 }
-const ContainerPerguntaFechada = styled.div`
-
-  width: 300px;
-  height: 35px;
-  background-color: #FFFFFF;
-  margin: 12px;
-  padding: 15px;
-  box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-
-p {
-  font-family: 'Recursive';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 19px;
-  color: #333333;
-}
-`
-const ContainerPerguntaAberta = styled.div`
-
-  width: 300px;
-  margin: 12px;
-  padding: 15px;
-  min-height: 100px;
-  background: #FFFFD5;
-  box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
-  border-radius: 5px;
-  font-family: 'Recursive';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 22px;
-  color: #333333;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-
-img{
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-}
-`

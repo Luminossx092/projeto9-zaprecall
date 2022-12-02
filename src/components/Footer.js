@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function Footer() {
+export default function Footer({respondidas,quantidadePerguntas}) {
     return (
         <Container>
-             0/4 CONCLUIDOS
+            {`${respondidas}/${quantidadePerguntas} CONCLUIDOS`}
         </Container>
     )
 }
@@ -19,16 +19,9 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: 'Recursive';
+  font-family: 'Recursive', sans-serif;
   font-weight: 400;
   font-size: 18px;
   color: #333333;
   padding: 10px;
-/*
-.footer-concluidos > .container-botoes {
-  display: flex;
-  width: 80%;
-  justify-content: space-between;
-  margin: 20px;
-}*/
 `

@@ -3,13 +3,15 @@ import styled from "styled-components";
 import Logo from "./Logo";
 import ListaPerguntas from "./ListaPerguntas"
 import Footer from "./Footer";
+import cards from "../cards"
 
 export default function FlashCardScreen() {
+    const [respondidas, setRespondidas] = React.useState(0)
     return (
         <ScreenContainer>
             <Logo/>
-            <ListaPerguntas/>
-            <Footer/>
+            <ListaPerguntas cards={cards} respondidas={respondidas} setRespondidas={setRespondidas}/>
+            <Footer respondidas={respondidas} quantidadePerguntas={cards.length} />
         </ScreenContainer>
     )
 }

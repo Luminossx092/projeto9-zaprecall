@@ -1,11 +1,10 @@
 import React from "react";
 import Pergunta from "./Pergunta";
-import cards from "../cards"
 
-export default function ListaPerguntas() {
+export default function ListaPerguntas({cards, respondidas, setRespondidas }) {
     return (
         <>
-            {cards.map(c => <Pergunta question={c.question}/>)}
+            {cards.map((c, i) => <Pergunta key={i} id={i + 1} question={c.question} answer={c.answer} respondidas={respondidas} setRespondidas={setRespondidas}/>)}
         </>
     )
 }

@@ -23,7 +23,7 @@ const Container = styled.div`
     }
 
     h1 {
-    font-family: 'Righteous';
+    font-family: 'Righteous', cursive;
     font-style: normal;
     font-weight: 400;
     font-size: 36px;
