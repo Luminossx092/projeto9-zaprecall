@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export default function Footer({respondidas,quantidadePerguntas}) {
     return (
-        <Container>
+        <Container data-test="footer">
             {`${respondidas}/${quantidadePerguntas} CONCLUIDOS`}
         </Container>
     )
