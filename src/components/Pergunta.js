@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function Pergunta() {
+export default function Pergunta({question}) {
     return (
         <>
             <ContainerPerguntaFechada>
-                <p>Pergunta 1</p>
+                <p>{question}</p>
                 <ion-icon name="play-outline"></ion-icon>
             </ContainerPerguntaFechada>
         </>
