@@ -34,7 +34,7 @@ export default function Pergunta({ question, answer, id, respondidas, setRespond
     return (
         <>
             {abrePergunta ?
-                <ContainerPerguntaAberta>
+                <ContainerPerguntaAberta data-test="flashcard">
                     {virada ? <>
                         <p data-test="flashcard-text"> {answer}</p>
                         <Botoes>
@@ -49,7 +49,7 @@ export default function Pergunta({ question, answer, id, respondidas, setRespond
                         </>
                     }
                 </ContainerPerguntaAberta> :
-                <ContainerPerguntaFechada>
+                <ContainerPerguntaFechada data-test="flashcard">
                     <p data-test="flashcard-text" className={cor} >{`Pergunta ${id}`}</p>
                     <img data-test="play-btn" onClick={() => !virada && setAbrePergunta(true)} src={imagem}></img>
                 </ContainerPerguntaFechada>}
